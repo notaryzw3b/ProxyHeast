@@ -16,18 +16,16 @@ class Database:
     def add_raw_proxy(self, proxy_list):
         for proxy in proxy_list:
             try:
-                print('add', proxy)
                 self.database.insert_one(proxy)
-            except Exception as e:
-                print("err", e)
+            except Exception:
                 pass
     
     def update_database(self, proxy_list):
         self.client.drop_database('proxies')
         self.client['proxies']['info'].insert_one({'updated_at': datetime.datetime.utcnow()})
         self.add_raw_proxy(proxy_list)
-
-        print('Database updated')
+    
+        print(f'{colorama.Fore.WHITE}[{Fore.GREEN}+{colorama.Fore.WHITE}] Proxy added to database.')
 
 class Console:
     def __init__(self):
@@ -138,13 +136,10 @@ class Scrapper:
             for source in proxy_w_regex:
                 try:
                     scrape(source[0], source[1])
-                    print('Scraped', source[0])
                 except:
-                    print('Cannot scrap', source[0])
                     pass
 
         scrape_regex()
-
         for proxy in list(set(found_proxy)):
             self.scraped_proxy.append(proxy)
 
@@ -160,8 +155,6 @@ class Scrapper:
                     self.scraped_source += 1
                     proxies = bs4.BeautifulSoup(requests.get(f'https://proxylist.live/dashboard/{protocol}?page={page}').text, features= 'lxml')('table',{'class':'table'})[0].findAll('tr')
 
-                    print(f'Scraped https://proxylist.live/dashboard/{protocol}?page={page}')
-
                     for i in range(len(proxies)):
                         res = proxies[i].findChildren(recursive = False)[0].text.strip()
 
@@ -171,7 +164,6 @@ class Scrapper:
                     if len(proxies) == 1:
                         break
                 except:
-                    print(f'Cannot scrap https://proxylist.live/dashboard/{protocol}?page={page}')
                     pass
 
             for proxy in list(set(proxy_found)):
