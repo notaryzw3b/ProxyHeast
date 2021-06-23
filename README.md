@@ -1,4 +1,4 @@
-<h1 align="center">CTB</h1>
+<h1 align="center">ProxyHeast</h1>
 <p align="center">
   <b>🖤 Follow me here:</b><br>
   <a href="https://discord.gg/Hex0de">Discord</a> |
@@ -11,7 +11,7 @@
 
 #
 
-## 🐺 Features:
+## 🍂 Features:
 ```cs
 /*
   *- Scrape lot of source (~50K)
@@ -22,7 +22,7 @@
 
 #
 
-## 🐺 Setup ProxyHeast:
+## 🍂 Setup ProxyHeast:
 ```cs
 /*
   *- Create MongoDB account and database, copy the connection string
