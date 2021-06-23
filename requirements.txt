@@ -1,0 +1,7 @@
+dnspython
+pythondns
+pymongo
+colorama
+requests
+proxy_checker
+bs4
