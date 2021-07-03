@@ -5,3 +5,4 @@ colorama
 requests
 proxy_checker
 bs4
+lxml
